@@ -5,9 +5,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/index.css" />
 </head>
 <body>
-<div id="index">
-    INDEX
-</div>
+    <div id="index">
+        INDEX
+    </div>
 <script src="${pageContext.request.contextPath}/static/js/index.js"></script>
 </body>
 </html>
