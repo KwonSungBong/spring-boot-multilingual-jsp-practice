@@ -21,3 +21,12 @@ mybatis:
     aggressive-lazy-loading: false
     map-underscore-to-camel-case: true
     auto-mapping-behavior: full
+
+logging:
+  config: classpath:logback-spring.xml
+  file: logs/application.log
+  level:
+    org.springframework: INFO
+    org.springframework.web: INFO
+    jdbc.sqlonly: INFO
+    com.trebit.event: DEBUG

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <property name="LOG_PATH" value="logs/" />
+    <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/application.log</file>
+        <encoder>
+            <pattern>%d{yy-MM-dd HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/application.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+
+        <encoder>
+            <pattern>%d{yyyy:MM:dd HH:mm:ss.SSS} %-5level --- [%thread] %logger{35} : %msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{yy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
+    </appender>
+ 
+    <logger name="org.springframework" level="info"/>
+    <logger name="org.hibernate" level="debug"/>
+    <logger name="com.trebit.admin" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ROLLING"/>
+    </logger>
+
+    <logger name="jdbc.sqlonly" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ROLLING"/>
+    </logger>
+
+    <root level="WARN">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="ROLLING"/>
+    </root>
+</configuration>
