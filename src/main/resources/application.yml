@@ -7,3 +7,17 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+  datasource:
+#    schema: classpath:import.sql
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://www.bookstorage.kr:3308/menu_admin?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: password
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration:
+    lazy-loading-enabled: true
+    aggressive-lazy-loading: false
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.UserRepository">
+
+    <resultMap type='com.example.demo.vo.User' id='userMap'>
+        <id column='id' property='id' />
+        <result column='name' property='name' />
+        <result column='username' property='username' />
+        <result column='password' property='password' />
+        <result column='use_yn' property='useYn' />
+    </resultMap>
+
+    <select id="findAll" resultMap="userMap">
+        SELECT `id`, `name`, `username`, `password`, `use_yn` FROM `user`
+    </select>
+
+	<select id="findOne" parameterType="int" resultMap="userMap">
+        SELECT `id`, `name`, `username`, `password`, `use_yn` FROM `user` WHERE `id` = #{id}
+    </select>
+
+	<insert id="insert" parameterType="com.example.demo.vo.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `user` (`name`, `username`, `password`)
+        VALUES (#{name}, #{username}, #{password})
+    </insert>
+
+	<update id="update" parameterType="com.example.demo.vo.User">
+        UPDATE `user` SET
+        name = #{name},
+        `username` = #{username},
+        `password` = #{password}
+        WHERE `id` = #{id}
+    </update>
+
+	<delete id="delete" parameterType="int">
+        DELETE FROM `user` WHERE `id` = #{id}
+    </delete>
+
+</mapper>

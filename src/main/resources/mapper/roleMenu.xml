@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.RoleMenuRepository">
+
+    <resultMap type='com.example.demo.vo.RoleMenu' id='roleMenuMap'>
+        <id column='role_id' property='roleId' />
+        <id column='menu_id' property='menuId' />
+        <result column='use_yn' property='useYn' />
+    </resultMap>
+
+    <select id="findAll" resultMap="roleMenuMap">
+        SELECT `role_id`, `menu_id`, `use_yn` FROM `role_menu`
+    </select>
+
+    <select id="findOne" parameterType="com.example.demo.vo.RoleMenu" resultMap="roleMenuMap">
+        SELECT `role_id`, `menu_id`, `use_yn` FROM `role_menu`
+        WHERE `role_id` = #{roleId} AND `menu_id` = #{menuId}
+    </select>
+
+    <insert id="insert" parameterType="com.example.demo.vo.RoleMenu" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `role_menu` (`role_id`, `menu_id`, `use_yn`)
+        VALUES (#{roleId}, #{menuId}, #{useYn})
+    </insert>
+
+	<update id="update" parameterType="com.example.demo.vo.RoleMenu">
+        UPDATE `role_menu` SET
+        `use_yn` = #{useYn}
+        WHERE `role_id` = #{roleId} AND `menu_id` = #{menuId}
+    </update>
+
+	<delete id="delete" parameterType="com.example.demo.vo.RoleMenu">
+        DELETE FROM `role_menu` WHERE `role_id` = #{roleId} AND `menu_id` = #{menuId}
+    </delete>
+
+</mapper>

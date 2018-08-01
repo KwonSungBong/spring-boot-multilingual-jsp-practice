@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.RoleRepository">
+
+    <resultMap type='com.example.demo.vo.Role' id='roleMap'>
+        <id column='id' property='id' />
+        <result column='name' property='name' />
+        <result column='use_yn' property='useYn' />
+    </resultMap>
+
+    <select id="findAll" resultMap="roleMap">
+        SELECT `id`, `name`, `use_yn` FROM `role`
+    </select>
+
+	<select id="findOne" parameterType="int" resultMap="roleMap">
+        SELECT `id`, `name`, `use_yn` FROM `role` WHERE `id` = #{id}
+    </select>
+
+	<insert id="insert" parameterType="com.example.demo.vo.Role" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `role` (`name`)
+        VALUES (#{name})
+    </insert>
+
+	<update id="update" parameterType="com.example.demo.vo.Role">
+        UPDATE `role` SET
+        `name` = #{name}
+        WHERE `id` = #{id}
+    </update>
+
+	<delete id="delete" parameterType="int">
+        DELETE FROM `role` WHERE `id` = #{id}
+    </delete>
+
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.MenuRepository">
+
+    <resultMap type='com.example.demo.vo.Menu' id='menuMap'>
+        <id column='id' property='id' />
+        <result column='name' property='name' />
+        <result column='url' property='url' />
+        <result column='order' property='order' />
+        <result column='depth' property='depth' />
+        <result column='parent' property='parent' />
+        <result column='menu_type' property='menuType' />
+        <result column='use_yn' property='useYn' />
+    </resultMap>
+
+    <select id="findAll" resultMap="menuMap">
+        SELECT `id`, `name`, `url`, `order`, `depth`, `parent`, `menu_type`, `use_yn` FROM `menu`
+    </select>
+
+	<select id="findOne" parameterType="int" resultMap="menuMap">
+        SELECT `id`, `name`, `url`, `order`, `depth`, `parent`, `menu_type`, `use_yn` FROM `menu`
+        WHERE `id` = #{id}
+    </select>
+
+    <select id="findByDepth" resultMap="menuMap">
+        select * from menu where parent is not null order by depth;
+    </select>
+
+    <select id="hierarchicalQuery" resultMap="menuMap">
+        SELECT `id`, `name`, `url`, `order`, `depth`, `parent`, `menu_type`, `use_yn`
+            FROM (SELECT * FROM menu ORDER BY parent, id) menu_sorted,
+            (SELECT @pv := 1) initialisation
+            WHERE FIND_IN_SET(parent, @pv) AND LENGTH(@pv := CONCAT(@pv, ',', id))
+    </select>
+
+	<insert id="insert" parameterType="com.example.demo.vo.Menu" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `menu` (`name`, `url`, `order`, `depth`, `parent`, `menu_type`)
+        VALUES (#{name}, #{url}, #{order}), #{depth}), #{parent}, #{menuType}
+    </insert>
+
+	<update id="update" parameterType="com.example.demo.vo.Menu">
+        UPDATE `menu` SET
+        `name` = #{name},
+        `url` = #{url},
+        `order` = #{order},
+        `depth` = #{depth},
+        `parent` = #{parent}
+        WHERE `id` = #{id}
+    </update>
+
+	<delete id="delete" parameterType="int">
+        DELETE FROM `menu` WHERE `id` = #{id}
+    </delete>
+
+</mapper>

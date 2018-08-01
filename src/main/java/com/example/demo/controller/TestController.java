@@ -15,11 +15,6 @@ public class TestController {
     @Autowired
     private MessageSource messageSource;
 
-    @RequestMapping("/")
-    public String index() {
-        return "index";
-    }
-
     @RequestMapping("/test")
     public ModelAndView test() {
         ModelAndView modelAndView = new ModelAndView("test");
