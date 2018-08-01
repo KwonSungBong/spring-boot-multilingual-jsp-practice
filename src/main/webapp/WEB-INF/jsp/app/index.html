@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    INDEX
+    <br />
+    네이버
+    <!--<a href="naversearchapp://">naversearchapp://</a>-->
+    <br />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/mobile-detect@1.4.2/mobile-detect.min.js"></script>
+<script>
+    location.href='naversearchapp://';
+
+    // var md = new MobileDetect(window.navigator.userAgent);
+    // alert(md.os());
+    // if(md.os() && md.os() == "AndroidOS") {
+    //     location.href="intent://scheme=naversearchapp;action=android.intent.action.VIEW;category=android.intent.category.BROWSABLE;package=com.nhn.android.search;end";
+    // } else if(md.os() && md.os() == "iOS") {
+    //     location.href='naversearchapp://';
+    // }
+
+    // var scheme = 'naversearchapp://',
+    //     fallbackURL = 'http://naver.com';
+    //
+    // var iframe = document.createElement('IFRAME'),
+    //     start;
+    //
+    // iframe.style.display = 'none';
+    // iframe.src = scheme;
+    // document.body.appendChild(iframe);
+    //
+    // start = +new Date();
+    // setTimeout(function() {
+    //     var now = +new Date();
+    //     if (now - start < 2000) {
+    //         location.href = fallbackURL;
+    //     }
+    // }, 500);
+</script>
+</body>
+</html>
