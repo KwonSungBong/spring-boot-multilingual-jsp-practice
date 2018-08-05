@@ -24,11 +24,16 @@
             <a class="dropdown-item" href="blank.html">Blank Page</a>
         </div>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-fw fa-table"></i>
-            <span>menu manage</span>
+            <span>manage</span>
         </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <a class="dropdown-item" href="/manage/manager">manager</a>
+            <a class="dropdown-item" href="/manage/menu">menu</a>
+            <a class="dropdown-item" href="/manage/role">role</a>
+        </div>
     </li>
     <c:forEach var="menu1" items="${menuRoot.children}">
         <c:choose>

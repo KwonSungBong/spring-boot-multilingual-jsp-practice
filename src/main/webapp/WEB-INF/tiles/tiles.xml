@@ -27,6 +27,18 @@
         </put-list-attribute>
     </definition>
 
+    <definition name="*/*" extends="mainLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/{1}/{2}.jsp" />
+
+        <put-attribute name="title" value="{1}/{2}"/>
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/static/css/{1}/{2}.css" />
+        </put-list-attribute>
+        <put-list-attribute name="javascripts">
+            <add-attribute value="/static/js/{1}/{2}.js" />
+        </put-list-attribute>
+    </definition>
+
     <definition name="index" extends="mainLayout">
         <put-attribute name="body" value="/WEB-INF/jsp/view/index.jsp" />
 
