@@ -64,5 +64,3 @@ https://startbootstrap.com/template-overviews/sb-admin/
 
 http://dion-ko.tistory.com/7
 
-
-ehcache에 다국어 올리기
