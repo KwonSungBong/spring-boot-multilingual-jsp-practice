@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.repository.MenuRepository;
-import com.example.demo.vo.JsTreeNode;
 import com.example.demo.vo.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,46 +21,32 @@ public class MenuService {
         return menuRepository.findAll();
     }
 
-    public List<JsTreeNode> getJsTreeNodeList() {
+    public Menu getMenuRoot() {
         List<Menu> menuList = menuRepository.findByDepth();
 
-        Map<Long, JsTreeNode> jsTreeNodeMap = new HashMap<>();
-        List<JsTreeNode> jsTreeNodeList = new ArrayList<>();
+        Menu root = menuList.get(0);
+        Map<Long, Menu> menuMap = new HashMap<>();
         for(Menu menu : menuList) {
-            JsTreeNode jsTreeNode = new JsTreeNode();
-            jsTreeNode.setId(menu.getId());
-            jsTreeNode.setText(menu.getName());
-            jsTreeNode.setOrder(menu.getOrder());
-            jsTreeNode.setDepth(menu.getDepth());
-            jsTreeNode.setUseYn(menu.getUseYn());
-            jsTreeNodeMap.put(menu.getId(), jsTreeNode);
-            if(menu.getDepth() == 1) {
-                jsTreeNodeList.add(jsTreeNode);
-            } else {
-                jsTreeNodeMap.get(menu.getParent()).getChildren().add(jsTreeNode);
+            menuMap.put(menu.getId(), menu);
+            if(!menu.isRoot() && menuMap.containsKey(menu.getParent())) {
+                menuMap.get(menu.getParent()).getChildren().add(menu);
             }
         }
 
-        return jsTreeNodeList;
+        return root;
     }
 
-    public List<JsTreeNode> selectAuthMenuTreeNodeList() {
-        List<JsTreeNode> jsTreeNodeList = getJsTreeNodeList();
-
-        List<JsTreeNode> allList = new ArrayList<>();
-        for(JsTreeNode jsTreeNode : jsTreeNodeList) {
-            allList.addAll(getTreeNodeList(jsTreeNode));
-        }
-
-        return allList;
+    public List<Menu> getMenuList() {
+        Menu root = getMenuRoot();
+        return getMenuList(root);
     }
 
-    private List<JsTreeNode> getTreeNodeList(JsTreeNode treeNode) {
-        List<JsTreeNode> list = new ArrayList<>();
-        list.add(treeNode);
-        if(!ObjectUtils.isEmpty(treeNode.getChildren())) {
-            for(JsTreeNode child : treeNode.getChildren()) {
-                list.addAll(getTreeNodeList(child));
+    private List<Menu> getMenuList(Menu menu) {
+        List<Menu> list = new ArrayList<>();
+        list.add(menu);
+        if(!ObjectUtils.isEmpty(menu.getChildren())) {
+            for(Menu child : menu.getChildren()) {
+                list.addAll(getMenuList(child));
             }
         }
         return list;

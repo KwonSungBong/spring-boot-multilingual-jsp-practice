@@ -1,7 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.controller.rest;
 
 import com.example.demo.service.MenuService;
-import com.example.demo.vo.JsTreeNode;
 import com.example.demo.vo.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +15,9 @@ public class MenuRestController {
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping("/jsTreeNode")
-    public List<JsTreeNode> getJsTreeNodeList() {
-        return menuService.getJsTreeNodeList();
+    @RequestMapping("/root")
+    public Menu getMenuRoot() {
+        return menuService.getMenuRoot();
     }
 
     @RequestMapping("/findAll")

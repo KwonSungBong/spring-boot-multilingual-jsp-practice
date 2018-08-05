@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.controller.rest;
 
 import com.example.demo.service.RoleService;
 import com.example.demo.vo.Role;

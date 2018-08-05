@@ -24,7 +24,7 @@
     </select>
 
     <select id="findByDepth" resultMap="menuMap">
-        select * from menu where parent is not null order by depth;
+        select * from menu order by depth;
     </select>
 
     <select id="hierarchicalQuery" resultMap="menuMap">
