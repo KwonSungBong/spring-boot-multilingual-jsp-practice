@@ -28,6 +28,7 @@ public class SpringMobileConfig extends WebMvcConfigurerAdapter {
         return new DeviceHandlerMethodArgumentResolver();
     }
 
+//    static setting
 //    @Bean
 //    public SiteSwitcherHandlerInterceptor siteSwitcherHandlerInterceptor() {
 //        return SiteSwitcherHandlerInterceptor.urlPath("/m");
@@ -36,19 +37,21 @@ public class SpringMobileConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(deviceResolverHandlerInterceptor());
+//        static setting
 //        registry.addInterceptor(siteSwitcherHandlerInterceptor());
     }
 
-    @Bean
-    public LiteDeviceDelegatingViewResolver liteDeviceAwareViewResolver() {
-        InternalResourceViewResolver delegate = new InternalResourceViewResolver();
-        delegate.setPrefix("/WEB-INF/jsp/");
-        delegate.setSuffix(".jsp");
-        LiteDeviceDelegatingViewResolver resolver = new LiteDeviceDelegatingViewResolver(delegate);
-        resolver.setMobilePrefix("m/");
-        resolver.setTabletPrefix("t/");
-        return resolver;
-    }
+//    jsp setting
+//    @Bean
+//    public LiteDeviceDelegatingViewResolver liteDeviceAwareViewResolver() {
+//        InternalResourceViewResolver delegate = new InternalResourceViewResolver();
+//        delegate.setPrefix("/WEB-INF/jsp/");
+//        delegate.setSuffix(".jsp");
+//        LiteDeviceDelegatingViewResolver resolver = new LiteDeviceDelegatingViewResolver(delegate);
+//        resolver.setMobilePrefix("m/");
+//        resolver.setTabletPrefix("t/");
+//        return resolver;
+//    }
 
     @Override
     public void addArgumentResolvers(

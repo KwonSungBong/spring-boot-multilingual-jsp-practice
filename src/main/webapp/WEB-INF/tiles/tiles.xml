@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="mainLayout" template="/WEB-INF/jsp/layout/main.jsp">
+        <put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp" />
+        <put-attribute name="sidebar" value="/WEB-INF/jsp/layout/sidebar.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp" />
+    </definition>
+
+    <definition name="*" extends="mainLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/{1}.jsp" />
+
+        <put-attribute name="title" value="{1}"/>
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/static/css/{1}.css" />
+        </put-list-attribute>
+        <put-list-attribute name="javascripts">
+            <add-attribute value="/static/js/{1}.js" />
+        </put-list-attribute>
+    </definition>
+
+    <definition name="index" extends="mainLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/index.jsp" />
+
+        <put-attribute name="title" value="dashboard"/>
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/static/css/index.css" />
+        </put-list-attribute>
+        <put-list-attribute name="javascripts">
+            <add-attribute value="/static/lib/sb-admin/js/demo/datatables-demo.js" />
+            <add-attribute value="/static/js/index.js" />
+        </put-list-attribute>
+    </definition>
+
+</tiles-definitions>

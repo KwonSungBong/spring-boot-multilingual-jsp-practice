@@ -5,7 +5,7 @@ server:
 spring:
   mvc:
     view:
-      prefix: /WEB-INF/jsp/
+      prefix: /WEB-INF/jsp/view/
       suffix: .jsp
   datasource:
 #    schema: classpath:import.sql
