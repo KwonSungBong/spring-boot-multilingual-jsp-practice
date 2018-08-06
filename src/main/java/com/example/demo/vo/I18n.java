@@ -1,9 +1,11 @@
 package com.example.demo.vo;
 
-import java.util.Locale;
+import lombok.Data;
 
+@Data
 public class I18n {
-    private long id;
+    private String code;
+    private String local;
+    private I18nType type;
     private String text;
-    private Locale local;
 }

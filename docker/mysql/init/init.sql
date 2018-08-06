@@ -41,6 +41,18 @@ CREATE TABLE `role_menu` (
   CONSTRAINT `memu_foreign_key` FOREIGN KEY (`menu_id`) REFERENCES `menu` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+create table `I18N` (
+  `CODE` varchar(32) not null,
+  `LOCALE` varchar(6) not null,
+  `TYPE` varchar(6) null,
+  `TEXT` text null,
+  `USE_YN` char NOT NULL DEFAULT 'Y' comment 'Y,N',
+  `CREATED_DATE` timestamp default CURRENT_TIMESTAMP not null,
+  `MODIFIED_DATE` timestamp default CURRENT_TIMESTAMP not null,
+  primary key (`CODE`, `LOCALE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
 insert into user(name, username, password) values('admin', 'admin', 'password');
 
 
@@ -91,3 +103,11 @@ INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES (
 INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES ('menu91', '/board/menu91', 1, 3, 10, 'menu', 'Y');
 INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES ('menu92', '/board/menu92', 2, 3, 10, 'menu', 'Y');
 INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES ('menu93', '/board/menu93', 3, 3, 10, 'menu', 'Y');
+
+
+INSERT INTO menu_admin.I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.CONTENT', 'en_US', 'label', 'Contents', 'Y', '2018-08-06 08:48:07', '2018-08-06 08:48:07');
+INSERT INTO menu_admin.I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.CONTENT', 'ko_KR', 'label', '내용', 'Y', '2018-08-06 08:47:12', '2018-08-06 08:47:12');
+INSERT INTO menu_admin.I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.TITLE', 'en_US', 'label', 'Titles', 'Y', '2018-08-06 08:50:04', '2018-08-06 08:50:04');
+INSERT INTO menu_admin.I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.TITLE', 'ko_KR', 'label', '제목', 'Y', '2018-08-06 08:50:04', '2018-08-06 08:50:04');
+
+
