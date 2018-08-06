@@ -49,17 +49,18 @@ create table `I18N` (
   `USE_YN` char NOT NULL DEFAULT 'Y' comment 'Y,N',
   `CREATED_DATE` timestamp default CURRENT_TIMESTAMP not null,
   `MODIFIED_DATE` timestamp default CURRENT_TIMESTAMP not null,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`CODE`, `LOCALE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table `I18N_REFER` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `LOCALE` varchar(6) not null,
   `TABLE` varchar(30) not null,
   `TEXT` text null,
   `USE_YN` char NOT NULL DEFAULT 'Y' comment 'Y,N',
   `CREATED_DATE` timestamp default CURRENT_TIMESTAMP not null,
   `MODIFIED_DATE` timestamp default CURRENT_TIMESTAMP not null,
-  primary key (`ID`)
+  primary key (`ID`, `LOCALE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 insert into user(name, username, password) values('admin', 'admin', 'password');
