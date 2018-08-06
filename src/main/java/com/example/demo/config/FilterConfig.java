@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConfig {
 
-    @Bean
+//    @Bean
     public AccessMenuFilter accessMenuFilter(){
         AccessMenuFilter accessMenuFilter = new AccessMenuFilter();
         accessMenuFilter.setPatterns(new String[]{

@@ -13,6 +13,9 @@ spring:
     url: jdbc:mysql://localhost:3308/menu_admin?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8
     username: root
     password: password
+  cache:
+    ehcache:
+      config: classpath:cache/ehcache.xml
 
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
