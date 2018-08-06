@@ -49,9 +49,18 @@ create table `I18N` (
   `USE_YN` char NOT NULL DEFAULT 'Y' comment 'Y,N',
   `CREATED_DATE` timestamp default CURRENT_TIMESTAMP not null,
   `MODIFIED_DATE` timestamp default CURRENT_TIMESTAMP not null,
-  primary key (`CODE`, `LOCALE`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+create table `I18N_REFER` (
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `TABLE` varchar(30) not null,
+  `TEXT` text null,
+  `USE_YN` char NOT NULL DEFAULT 'Y' comment 'Y,N',
+  `CREATED_DATE` timestamp default CURRENT_TIMESTAMP not null,
+  `MODIFIED_DATE` timestamp default CURRENT_TIMESTAMP not null,
+  primary key (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 insert into user(name, username, password) values('admin', 'admin', 'password');
 
@@ -105,9 +114,9 @@ INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES (
 INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES ('menu93', '/board/menu93', 3, 3, 10, 'menu', 'Y');
 
 
-INSERT INTO menu_admin.I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.CONTENT', 'en_US', 'label', 'Contents', 'Y', '2018-08-06 08:48:07', '2018-08-06 08:48:07');
-INSERT INTO menu_admin.I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.CONTENT', 'ko_KR', 'label', '내용', 'Y', '2018-08-06 08:47:12', '2018-08-06 08:47:12');
-INSERT INTO menu_admin.I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.TITLE', 'en_US', 'label', 'Titles', 'Y', '2018-08-06 08:50:04', '2018-08-06 08:50:04');
-INSERT INTO menu_admin.I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.TITLE', 'ko_KR', 'label', '제목', 'Y', '2018-08-06 08:50:04', '2018-08-06 08:50:04');
+INSERT INTO I18N_LABEL (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.CONTENT', 'en_US', 'label', 'Contents', 'Y', '2018-08-06 08:48:07', '2018-08-06 08:48:07');
+INSERT INTO I18N_LABEL (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.CONTENT', 'ko_KR', 'label', '내용', 'Y', '2018-08-06 08:47:12', '2018-08-06 08:47:12');
+INSERT INTO I18N_LABEL (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.TITLE', 'en_US', 'label', 'Titles', 'Y', '2018-08-06 08:50:04', '2018-08-06 08:50:04');
+INSERT INTO I18N_LABEL (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.TITLE', 'ko_KR', 'label', '제목', 'Y', '2018-08-06 08:50:04', '2018-08-06 08:50:04');
 
 
