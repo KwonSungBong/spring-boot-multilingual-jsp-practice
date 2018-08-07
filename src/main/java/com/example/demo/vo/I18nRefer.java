@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class I18nRefer {
-    private String id;
+    private long id;
     private String locale;
     private String table;
     private String column;

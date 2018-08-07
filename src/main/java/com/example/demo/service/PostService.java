@@ -22,10 +22,14 @@ public class PostService {
     }
 
     public int insert(Post post) {
+        postRepository.insertPostTitle(post.getTitle());
+        postRepository.insertPostContent(post.getContent());
         return postRepository.insert(post);
     }
 
     public int update(Post post) {
+        postRepository.updatePostTitle(post.getTitle());
+        postRepository.updatePostContent(post.getContent());
         return postRepository.update(post);
     }
 

@@ -34,14 +34,41 @@
 
 	<update id="update" parameterType="com.example.demo.vo.Post">
         UPDATE `POST` SET
-        `title_id` = #{titleId},
-        `content_id` = #{contentId}
+        `USE_YN` = #{useYn}
         WHERE `id` = #{id}
     </update>
 
 	<delete id="delete" parameterType="int">
         DELETE FROM `POST` WHERE `id` = #{id}
     </delete>
+
+    <insert id="insertPostTitle" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `I18N_REFER` (`LOCALE`, `TABLE`, `COLUMN`, `TEXT`) VALUES
+        <foreach collection="list" item="item" separator=" , ">
+            (#{item.locale}, #{item.table}, #{item.column}, #{item.text})
+        </foreach>
+    </insert>
+
+    <insert id="insertPostContent" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `I18N_REFER` (`LOCALE`, `TABLE`, `COLUMN`, `TEXT`) VALUES
+        <foreach collection="list" item="item" separator=" , ">
+            (#{item.locale}, #{item.table}, #{item.column}, #{item.text})
+        </foreach>
+    </insert>
+
+    <update id="updatePostTitle" parameterType="java.util.List">
+        <foreach collection="list" item="item" separator=";">
+            UPDATE `I18N_REFER` SET `TEXT` = #{item.text}
+            WHERE `id` = #{item.id} AND `locale` = #{item.locale} AND `table` = 'POST' AND `column` = 'title'
+        </foreach>
+    </update>
+
+    <update id="updatePostContent" parameterType="java.util.List">
+        <foreach collection="list" item="item" separator=";">
+            UPDATE `I18N_REFER` SET `TEXT` = #{item.text}
+            WHERE `id` = #{item.id} AND `locale` = #{item.locale} AND `table` = 'POST' AND `column` = 'content'
+        </foreach>
+    </update>
 
     <select id="findPostTitleList" resultMap="I18nReferMap">
 		SELECT `locale`, `table`, `column`, `text` FROM I18N_REFER
