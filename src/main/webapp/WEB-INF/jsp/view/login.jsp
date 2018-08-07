@@ -26,13 +26,13 @@
             <form>
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus" value="rnjstjdqhd39@naver.com">
                         <label for="inputEmail">Email address</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required" value="password">
                         <label for="inputPassword">Password</label>
                     </div>
                 </div>
@@ -44,11 +44,11 @@
                         </label>
                     </div>
                 </div>
-                <a class="btn btn-primary btn-block" href="index.html">Login</a>
+                <button id="login-btn" class="btn btn-primary btn-block">Login</button>
             </form>
             <div class="text-center">
-                <a class="d-block small mt-3" href="register.html">Register an Account</a>
-                <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+                <a class="d-block small mt-3" href="#">Register an Account</a>
+                <a class="d-block small" href="#">Forgot Password?</a>
             </div>
         </div>
     </div>
@@ -60,5 +60,24 @@
 
 <!-- Core plugin JavaScript-->
 <script src="${pageContext.request.contextPath}/static/lib/sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script>
+
+    $("#login-btn").click(function() {
+        $.ajax({
+            method: "POST",
+            url: "/rest/auth/login",
+            data: { email: $("#inputEmail").val(), password: $("#inputPassword").val() }
+        })
+        .done(function(data) {
+            console.log(data);
+            if(data === "1") {
+                location.href = "/";
+            } else {
+                alert("로그인에 실패하였습니다.");
+            }
+        });
+    });
+
+</script>
 </body>
 </html>

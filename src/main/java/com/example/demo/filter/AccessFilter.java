@@ -1,5 +1,8 @@
 package com.example.demo.filter;
 
+import com.example.demo.filter.base.BaseFilter;
+import com.example.demo.util.SessionUtil;
+import com.example.demo.vo.User;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
@@ -10,15 +13,20 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AccessMenuFilter extends BaseFilter {
+public class AccessFilter extends BaseFilter {
 
     private PathMatcher pathMatcher = new AntPathMatcher();
 
-    private String[] accessUrls = new String[]{"/login", "/manage/manager"};
+//    private String[] accessUrls = new String[]{"/login", "/", "/manage/manager"};
+    private String[] accessUrls = new String[]{"/**/**"};
 
     @Override
     public void init(FilterConfig filterConfig) {
-        setExcludes(new String[]{"/WEB-INF/jsp/layout/*.jsp", "/WEB-INF/jsp/view/*.jsp", "/login", "/manage/manager"});
+        setExcludes(new String[]{
+                "/WEB-INF/jsp/layout/*.jsp",
+                "/WEB-INF/jsp/view/*.jsp",
+                "/rest/**",
+                "/login"});
     }
 
     @Override
@@ -31,12 +39,19 @@ public class AccessMenuFilter extends BaseFilter {
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;
             }
+
+            if(SessionUtil.getSession("loginUser") == null) {
+    			httpServletResponse.sendRedirect("/login");
+                return;
+            }
+
             if(!isAccessedUrl(httpServletRequest)) {
                 httpServletResponse.sendRedirect("/login");
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;
             }
-            System.out.println("AccessMenuFilter");
+
+            System.out.println("AsccessFilter");
             filterChain.doFilter(servletRequest, servletResponse);
         } catch (Throwable t) {
         } finally {

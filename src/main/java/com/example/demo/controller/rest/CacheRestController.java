@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/rest/cache")
 public class CacheRestController {
 
     @Autowired
@@ -18,7 +18,7 @@ public class CacheRestController {
     @Autowired
     private LocaleService cacheService;
 
-    @RequestMapping("/cache")
+    @RequestMapping
     public String test() {
         log.info("Spring Boot Ehcache 2 Caching Example Configuration");
         log.info("using cache manager: " + cacheManager.getClass().getName());

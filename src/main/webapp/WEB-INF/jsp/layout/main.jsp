@@ -64,7 +64,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <button id="logout-btn" class="btn btn-primary">Logout</button>
             </div>
         </div>
     </div>
@@ -84,6 +84,23 @@
 
 <!-- Custom scripts for all pages-->
 <script src="${pageContext.request.contextPath}/static/lib/sb-admin/js/sb-admin.min.js"></script>
+
+<script>
+    $("#logout-btn").click(function() {
+        $.ajax({
+            method: "POST",
+            url: "/rest/auth/logout",
+            data: {}
+        })
+        .done(function(data) {
+            if(data === "1") {
+                location.href = "/login";
+            } else {
+                alert("로그아웃에 실패하였습니다.");
+            }
+        });
+    });
+</script>
 
 <c:forEach var="script" items="${javascripts}">
     <script src="<c:url value="${script}"/>"></script>

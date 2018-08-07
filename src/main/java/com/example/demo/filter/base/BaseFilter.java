@@ -1,4 +1,4 @@
-package com.example.demo.filter;
+package com.example.demo.filter.base;
 
 import org.springframework.core.Ordered;
 import org.springframework.util.AntPathMatcher;
