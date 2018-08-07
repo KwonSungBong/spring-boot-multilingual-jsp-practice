@@ -70,7 +70,7 @@ create table `POST` (
   `USE_YN` char NOT NULL DEFAULT 'Y' comment 'Y,N',
   `CREATED_DATE` timestamp default CURRENT_TIMESTAMP not null,
   `MODIFIED_DATE` timestamp default CURRENT_TIMESTAMP not null,
-  primary key (`ID`, `LOCALE`)
+  primary key (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
