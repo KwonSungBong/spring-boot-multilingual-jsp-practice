@@ -39,7 +39,10 @@
     </update>
 
 	<delete id="delete" parameterType="int">
-        DELETE FROM `POST` WHERE `id` = #{id}
+        DELETE a, b
+        FROM `POST` a
+        JOIN `I18N_REFER` b ON a.`TITLE_ID` = b.`ID`
+        WHERE a.`ID` = #{id}
     </delete>
 
     <insert id="insertPostTitle" parameterType="java.util.List" useGeneratedKeys="true" keyProperty="id">

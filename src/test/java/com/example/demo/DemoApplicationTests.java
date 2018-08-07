@@ -104,4 +104,10 @@ public class DemoApplicationTests {
         System.out.println();
     }
 
+    @Test
+    public void TEST5() {
+        postService.delete(1);
+        System.out.println();
+    }
+
 }
