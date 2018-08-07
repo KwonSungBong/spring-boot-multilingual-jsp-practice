@@ -134,7 +134,8 @@ INSERT INTO I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE)
 
 
 INSERT INTO I18N_REFER (`LOCALE`, `TABLE`, `COLUMN`, `TEXT`) VALUES ('ko_KR','POST','title','테스트'),('en_US','POST','title','test');
-INSERT INTO I18N_REFER (`LOCALE`, `TABLE`, `COLUMN`, `TEXT`) VALUES('ko_KR','POST','content','테스트 테스트'),('en_US','POST','content','test test');
-INSERT INTO POST (ID, TITLE_ID, CONTENT_ID) VALUES (1, 1, 2);
+INSERT INTO I18N_REFER (`LOCALE`, `TABLE`, `COLUMN`, `TEXT`) VALUES ('ko_KR','POST','content','테스트 테스트'),('en_US','POST','content','test test');
+INSERT INTO POST (ID, TITLE_ID, CONTENT_ID) VALUES (1, 1, 1);
+
 
 
