@@ -5,7 +5,7 @@
 		 monitoring="autodetect"
 		 dynamicConfig="true">
 
-	<cache name="instruments"
+	<cache name="locale"
 		   maxElementsInMemory="100"
 		   eternal="false"
 		   overflowToDisk="false"
