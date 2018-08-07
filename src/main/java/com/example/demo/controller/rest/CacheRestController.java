@@ -1,6 +1,6 @@
 package com.example.demo.controller.rest;
 
-import com.example.demo.cache.CacheService;
+import com.example.demo.cache.LocaleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
@@ -16,7 +16,7 @@ public class CacheRestController {
     private CacheManager cacheManager;
 
     @Autowired
-    private CacheService cacheService;
+    private LocaleService cacheService;
 
     @RequestMapping("/cache")
     public String test() {
@@ -34,7 +34,7 @@ public class CacheRestController {
     }
 
     private void play(String instrument){
-        log.info("Calling: " + CacheService.class.getSimpleName() + ".play(\"" + instrument + "\");");
+        log.info("Calling: " + LocaleService.class.getSimpleName() + ".play(\"" + instrument + "\");");
         cacheService.play(instrument);
     }
 

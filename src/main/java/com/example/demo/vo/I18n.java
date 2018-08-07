@@ -6,6 +6,6 @@ import lombok.Data;
 public class I18n {
     private String code;
     private String locale;
-    private I18nType type;
+    private String type;
     private String text;
 }

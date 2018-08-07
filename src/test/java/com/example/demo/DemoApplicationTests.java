@@ -1,6 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.cache.LocaleService;
+import com.example.demo.repository.I18NRepository;
 import com.example.demo.service.PostService;
+import com.example.demo.vo.I18n;
 import com.example.demo.vo.I18nRefer;
 import com.example.demo.vo.Post;
 import org.junit.Test;
@@ -14,6 +17,11 @@ import org.springframework.util.PathMatcher;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.groupingBy;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -107,6 +115,25 @@ public class DemoApplicationTests {
     @Test
     public void TEST5() {
         postService.delete(1);
+        System.out.println();
+    }
+
+    @Autowired
+    private I18NRepository i18NRepository;
+
+    @Test
+    public void TEST6() {
+        Map<String, Map<String, I18n>> test = i18NRepository.findAll().stream()
+                .collect(groupingBy(I18n::getLocale, Collectors.toMap(I18n::getCode, Function.identity())));
+        System.out.println();
+    }
+
+    @Autowired
+    private LocaleService localeService;
+
+    @Test
+    public void TEST7() {
+        String text = localeService.i18nText("ko_KR", "I18N.TITLE");
         System.out.println();
     }
 

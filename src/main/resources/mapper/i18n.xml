@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.I18NRepository">
+
+    <resultMap type='com.example.demo.vo.I18n' id='I18nrMap'>
+        <id column='code' property='code' />
+        <id column='locale' property='locale' />
+        <result column='type' property='type' />
+        <result column='text' property='text' />
+    </resultMap>
+
+    <select id="findAll" resultMap="I18nrMap">
+        SELECT `code`, `locale`, `type`, `text` FROM `I18N`
+    </select>
+
+	<update id="update" parameterType="com.example.demo.vo.I18n">
+        UPDATE `I18N` SET text = #{text}
+        WHERE `code` = #{code} AND `locale` = #{locale} AND `type` = #{type}
+    </update>
+
+</mapper>
