@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.repository.PostRepository">
+
+    <resultMap type='com.example.demo.vo.Post' id='postMap'>
+        <id column='id' property='id' />
+        <!--<result column='title_id' property='titleId' />-->
+        <!--<result column='content_id' property='contentId' />-->
+        <collection property="title" column="{id=title_id}" javaType="java.util.ArrayList" select="findPostTitleList"/>
+        <collection property="content" column="{id=content_id}" javaType="java.util.ArrayList" select="findPostContentList"/>
+    </resultMap>
+
+    <resultMap type='com.example.demo.vo.I18nRefer' id='I18nReferMap'>
+        <id column='id' property='id' />
+        <result column='locale' property='locale' />
+        <result column='table' property='table' />
+        <result column='column' property='column' />
+        <result column='text' property='text' />
+    </resultMap>
+
+    <select id="findAll" resultMap="postMap">
+        SELECT `id`, `title_id`, `content_id` FROM `POST`
+    </select>
+
+	<select id="findOne" parameterType="int" resultMap="postMap">
+        SELECT `id`, `title_id`, `content_id` FROM `POST` WHERE `id` = #{id}
+    </select>
+
+	<insert id="insert" parameterType="com.example.demo.vo.Post" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO `POST` (`title_id`, `content_id`)
+        VALUES (#{titleId}, #{contentId})
+    </insert>
+
+	<update id="update" parameterType="com.example.demo.vo.Post">
+        UPDATE `POST` SET
+        `title_id` = #{titleId},
+        `content_id` = #{contentId}
+        WHERE `id` = #{id}
+    </update>
+
+	<delete id="delete" parameterType="int">
+        DELETE FROM `POST` WHERE `id` = #{id}
+    </delete>
+
+    <select id="findPostTitleList" resultMap="I18nReferMap">
+		SELECT `locale`, `table`, `column`, `text` FROM I18N_REFER
+		WHERE `id` = #{id} AND `table` = 'POST' AND `column` = 'title'
+	</select>
+
+    <select id="findPostContentList" resultMap="I18nReferMap">
+		SELECT `locale`, `table`, `column`, `text` FROM I18N_REFER
+		WHERE `id` = #{id} AND `table` = 'POST' AND `column` = 'content'
+	</select>
+
+</mapper>

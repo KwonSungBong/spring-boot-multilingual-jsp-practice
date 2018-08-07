@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class I18n {
     private String code;
-    private String local;
+    private String locale;
     private I18nType type;
     private String text;
 }

@@ -10,7 +10,7 @@ spring:
   datasource:
 #    schema: classpath:import.sql
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3308/menu_admin?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://www.bookstorage.kr:3308/menu_admin?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8
     username: root
     password: password
   cache:
