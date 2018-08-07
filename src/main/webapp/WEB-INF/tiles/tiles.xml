@@ -52,4 +52,17 @@
         </put-list-attribute>
     </definition>
 
+    <definition name="post" extends="mainLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/view/post.jsp" />
+
+        <put-attribute name="title" value="post"/>
+        <put-list-attribute name="stylesheets">
+            <add-attribute value="/static/css/post.css" />
+        </put-list-attribute>
+        <put-list-attribute name="javascripts">
+            <add-attribute value="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js" />
+            <add-attribute value="/static/js/post.js" />
+        </put-list-attribute>
+    </definition>
+
 </tiles-definitions>

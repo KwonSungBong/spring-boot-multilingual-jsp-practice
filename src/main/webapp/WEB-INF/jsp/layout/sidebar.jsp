@@ -35,6 +35,12 @@
             <a class="dropdown-item" href="/manage/role">role</a>
         </div>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/post">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>post</span>
+        </a>
+    </li>
     <c:forEach var="menu1" items="${menuRoot.children}">
         <c:choose>
             <c:when test = "${menu1.menuType eq 'menu'}">
