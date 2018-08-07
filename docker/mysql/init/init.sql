@@ -53,14 +53,14 @@ create table `I18N` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table `I18N_REFER` (
-  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `LOCALE` varchar(6) NOT NULL,
   `TABLE` varchar(30) NOT NULL,
+  `ID` bigint(20) NOT NULL AUTO_INCREMENT,
   `TEXT` text null,
   `USE_YN` char NOT NULL DEFAULT 'Y' comment 'Y,N',
   `CREATED_DATE` timestamp default CURRENT_TIMESTAMP NOT NULL,
   `MODIFIED_DATE` timestamp default CURRENT_TIMESTAMP NOT NULL,
-  primary key (`ID`, `LOCALE`, `TABLE`)
+  primary key (`LOCALE`, `TABLE`, `ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 create table `POST` (
