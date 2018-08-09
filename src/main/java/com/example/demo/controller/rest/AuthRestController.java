@@ -4,10 +4,7 @@ import com.example.demo.service.UserService;
 import com.example.demo.util.SessionUtil;
 import com.example.demo.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/auth")
@@ -15,6 +12,11 @@ public class AuthRestController {
 
     @Autowired
     private UserService userService;
+
+    @GetMapping
+    public User loginUser() {
+        return SessionUtil.getLoginUser().getUser();
+    }
 
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password) {
@@ -24,7 +26,7 @@ public class AuthRestController {
         user.setName("test name");
         user.setUsername("test username");
         if(user != null) {
-            SessionUtil.setSession("loginUser", user);
+            SessionUtil.login(user);
             return "1";
         } else {
             return "0";
@@ -33,7 +35,7 @@ public class AuthRestController {
 
     @PostMapping("/logout")
     public String logout() {
-        SessionUtil.invalidate();
+        SessionUtil.logout();
         return "1";
     }
 

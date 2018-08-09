@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConfig {
 
-    @Bean
+//    @Bean
     public AccessFilter accessFilter(){
         AccessFilter accessFilter = new AccessFilter();
         accessFilter.setPatterns(new String[]{
