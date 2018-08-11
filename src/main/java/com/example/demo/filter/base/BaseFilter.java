@@ -47,7 +47,7 @@ public abstract class BaseFilter implements Filter, Ordered {
     }
 
     protected boolean isMatchedUrl(ServletRequest servletRequest) {
-        boolean rst = false;
+        boolean result = false;
         HttpServletRequest httpequest = (HttpServletRequest) servletRequest;
         String url = httpequest.getRequestURI();
 
@@ -60,7 +60,7 @@ public abstract class BaseFilter implements Filter, Ordered {
                 return true;
             }
         }
-        return rst;
+        return result;
     }
 
     protected boolean isExcludedUrl(ServletRequest servletRequest) {

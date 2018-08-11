@@ -2,7 +2,8 @@ package com.example.demo.filter;
 
 import com.example.demo.filter.base.BaseFilter;
 import com.example.demo.util.SessionUtil;
-import com.example.demo.vo.User;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
 
@@ -13,20 +14,22 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Slf4j
 public class AccessFilter extends BaseFilter {
 
     private PathMatcher pathMatcher = new AntPathMatcher();
 
-//    private String[] accessUrls = new String[]{"/login", "/", "/manage/manager"};
-    private String[] accessUrls = new String[]{"/**/**"};
+    @Setter
+    private String[] accessUrls = new String[0];
+
+    @Setter
+    private String noLoginRedirectUrl;
+
+    @Setter
+    private String accessDeniedRedirectUrl;
 
     @Override
     public void init(FilterConfig filterConfig) {
-        setExcludes(new String[]{
-                "/WEB-INF/jsp/layout/*.jsp",
-                "/WEB-INF/jsp/view/*.jsp",
-                "/rest/**",
-                "/login"});
     }
 
     @Override
@@ -36,22 +39,25 @@ public class AccessFilter extends BaseFilter {
 
         try{
             if(isExcludedUrl(httpServletRequest)) {
+                log.info("isExcludedUrl");
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;
             }
 
-            if(SessionUtil.getSession("loginUser") == null) {
-    			httpServletResponse.sendRedirect("/login");
+            if(!SessionUtil.isLogin()) {
+                log.info("isLogin");
+    			httpServletResponse.sendRedirect(noLoginRedirectUrl);
                 return;
             }
 
             if(!isAccessedUrl(httpServletRequest)) {
-                httpServletResponse.sendRedirect("/login");
+                log.info("isAccessedUrl");
+                httpServletResponse.sendRedirect(accessDeniedRedirectUrl);
                 filterChain.doFilter(servletRequest, servletResponse);
                 return;
             }
 
-            System.out.println("AsccessFilter");
+            log.info("AsccessFilter");
             filterChain.doFilter(servletRequest, servletResponse);
         } catch (Throwable t) {
         } finally {

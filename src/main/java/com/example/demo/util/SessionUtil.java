@@ -43,6 +43,10 @@ public class SessionUtil {
         invalidate();
     }
 
+    public static boolean isLogin() {
+        return getLoginUser() != null;
+    }
+
     public static LoginUser getLoginUser() {
         return (LoginUser) getCurrentRequest().getSession().getAttribute(LOGIN_USER_KEY);
     }
