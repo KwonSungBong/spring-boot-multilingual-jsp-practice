@@ -6,5 +6,5 @@ import lombok.Data;
 public class Role {
     private long id;
     private String name;
-    private char useYn;
+    private String useYn;
 }

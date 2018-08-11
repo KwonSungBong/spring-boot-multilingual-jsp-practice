@@ -82,7 +82,7 @@ INSERT INTO role(`name`) VALUES('SA');
 INSERT INTO role(`name`) VALUES('AD');
 
 
-INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES ('menu', null, 1, 0, null, 'category', 'Y');
+INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES ('menu', null, 1, 0, null, 'root', 'Y');
 
 INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES ('menu1', '', 1, 1, 1, 'category', 'Y');
 INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES ('menu2', '', 2, 1, 1, 'category', 'Y');

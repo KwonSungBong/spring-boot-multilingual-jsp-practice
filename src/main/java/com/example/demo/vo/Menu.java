@@ -16,7 +16,7 @@ public class Menu {
     private int depth;
     private long parent;
     private MenuType menuType;
-    private char useYn;
+    private String useYn;
     private List<Menu> children = new ArrayList<>();
 
     public boolean isRoot() {

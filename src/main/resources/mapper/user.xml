@@ -9,10 +9,19 @@
         <result column='username' property='username' />
         <result column='password' property='password' />
         <result column='use_yn' property='useYn' />
+        <association columnPrefix="role_" property="role" resultMap="roleMap" />
+    </resultMap>
+
+    <resultMap type='com.example.demo.vo.Role' id='roleMap'>
+        <id column='id' property='id' />
+        <result column='name' property='name' />
+        <result column='use_yn' property='useYn' />
     </resultMap>
 
     <select id="findAll" resultMap="userMap">
-        SELECT `id`, `name`, `username`, `password`, `use_yn` FROM `user`
+        SELECT a.`id`, a.`name`, a.`username`, a.`password`, a.`use_yn`,
+        a.`role_id` AS role_id, b.`name` AS role_name, b.`use_yn` AS role_use_yn
+        FROM `user` a JOIN `role` b ON a.role_id = b.id
     </select>
 
 	<select id="findOne" parameterType="int" resultMap="userMap">

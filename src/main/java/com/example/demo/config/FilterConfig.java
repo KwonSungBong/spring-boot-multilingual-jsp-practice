@@ -16,10 +16,10 @@ public class FilterConfig {
                 "/rest/**",
                 "/login"});
         accessFilter.setAccessUrls(new String[]{
-//                "/**/**",
-                "/",
-                "/login",
-                "/manage/manager"
+                "/**/**",
+//                "/",
+//                "/login",
+//                "/manage/manager"
         });
         accessFilter.setNoLoginRedirectUrl("/login");
         accessFilter.setAccessDeniedRedirectUrl("/");

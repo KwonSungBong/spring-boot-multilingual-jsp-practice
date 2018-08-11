@@ -6,6 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum MenuType {
-    menu("menu"), category("category");
+    root("root"), menu("menu"), category("category");
     private String name;
 }

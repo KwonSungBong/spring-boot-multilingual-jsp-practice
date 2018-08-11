@@ -5,8 +5,6 @@
 
     <resultMap type='com.example.demo.vo.Post' id='postMap'>
         <id column='id' property='id' />
-        <!--<result column='title_id' property='titleId' />-->
-        <!--<result column='content_id' property='contentId' />-->
         <collection property="title" column="{id=title_id}" javaType="java.util.ArrayList" select="findPostTitleList"/>
         <collection property="content" column="{id=content_id}" javaType="java.util.ArrayList" select="findPostContentList"/>
     </resultMap>
