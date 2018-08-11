@@ -75,7 +75,11 @@ create table `POST` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-insert into user(name, username, password) values('admin', 'admin', 'password');
+INSERT INTO user(name, username, password) VALUES('superadmin', 'superadmin', 'password');
+INSERT INTO user(name, username, password) VALUES('admin', 'admin', 'password');
+
+INSERT INTO role(`name`) VALUES('SA');
+INSERT INTO role(`name`) VALUES('AD');
 
 
 INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES ('menu', null, 1, 0, null, 'category', 'Y');
@@ -127,6 +131,14 @@ INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES (
 INSERT INTO menu (name, url, `order`, depth, parent, menu_type, use_yn) VALUES ('menu93', '/board/menu93', 3, 3, 10, 'menu', 'Y');
 
 
+INSERT INTO role_menu(role_id, menu_id) SELECT 1, id FROM menu;
+INSERT INTO role_menu(role_id, menu_id) SELECT 2, id FROM menu;
+
+
+UPDATE user SET role_id = 1 WHERE id = 1;
+UPDATE user SET role_id = 2 WHERE id = 2;
+
+
 INSERT INTO I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.CONTENT', 'en_US', 'label', 'Contents', 'Y', '2018-08-06 08:48:07', '2018-08-06 08:48:07');
 INSERT INTO I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.CONTENT', 'ko_KR', 'label', '내용', 'Y', '2018-08-06 08:47:12', '2018-08-06 08:47:12');
 INSERT INTO I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE) VALUES ('I18N.TITLE', 'en_US', 'label', 'Titles', 'Y', '2018-08-06 08:50:04', '2018-08-06 08:50:04');
@@ -136,6 +148,3 @@ INSERT INTO I18N (CODE, LOCALE, TYPE, TEXT, USE_YN, CREATED_DATE, MODIFIED_DATE)
 INSERT INTO I18N_REFER (`LOCALE`, `TABLE`, `COLUMN`, `TEXT`) VALUES ('ko_KR','POST','title','테스트'),('en_US','POST','title','test');
 INSERT INTO I18N_REFER (`LOCALE`, `TABLE`, `COLUMN`, `TEXT`) VALUES ('ko_KR','POST','content','테스트 테스트'),('en_US','POST','content','test test');
 INSERT INTO POST (ID, TITLE_ID, CONTENT_ID) VALUES (1, 1, 1);
-
-
-
