@@ -6,16 +6,29 @@
     <resultMap type='com.example.demo.vo.RoleMenu' id='roleMenuMap'>
         <id column='role_id' property='roleId' />
         <id column='menu_id' property='menuId' />
+        <result column='name' property='name' />
+        <result column='url' property='url' />
+        <result column='order' property='order' />
+        <result column='depth' property='depth' />
+        <result column='parent' property='parent' />
+        <result column='menu_type' property='menuType' />
         <result column='use_yn' property='useYn' />
     </resultMap>
 
     <select id="findAll" resultMap="roleMenuMap">
-        SELECT `role_id`, `menu_id`, `use_yn` FROM `role_menu`
-    </select>
-
-    <select id="findOne" parameterType="com.example.demo.vo.RoleMenu" resultMap="roleMenuMap">
-        SELECT `role_id`, `menu_id`, `use_yn` FROM `role_menu`
-        WHERE `role_id` = #{roleId} AND `menu_id` = #{menuId}
+        SELECT a.role_id, a.menu_id,
+        b.`name`, b.`url`, b.`order`, b.`depth`, b.`parent`, b.`menu_type`, b.`use_yn`
+        FROM `role_menu` a
+        INNER JOIN `menu` b ON a.menu_id = b.id
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            b.use_yn = 'Y'
+            <if test="roleId != null and roleId !=''">
+                AND a.role_id = #{roleId}
+            </if>
+            <if test="useYn != null and useYn !=''">
+                AND a.use_yn = #{useYn}
+            </if>
+        </trim>
     </select>
 
     <insert id="insert" parameterType="com.example.demo.vo.RoleMenu" useGeneratedKeys="true" keyProperty="id">

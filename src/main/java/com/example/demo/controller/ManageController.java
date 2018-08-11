@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.service.MenuService;
+import com.example.demo.service.RoleMenuService;
 import com.example.demo.service.RoleService;
 import com.example.demo.service.UserService;
+import com.example.demo.vo.RoleMenuSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,9 @@ public class ManageController {
 
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private RoleMenuService roleMenuService;
 
     @RequestMapping("/manager")
     public ModelAndView manager() {
@@ -39,10 +44,13 @@ public class ManageController {
 
     @RequestMapping("/role")
     public ModelAndView role() {
+        RoleMenuSearch search = new RoleMenuSearch();
+        search.setRoleId(1);
+
         ModelAndView modelAndView = new ModelAndView("manage/role");
         modelAndView.addObject("menuRoot", menuService.getMenuRoot());
         modelAndView.addObject("roleList", roleService.findAll());
-        modelAndView.addObject("roleMenuList", menuService.getMenuList());
+        modelAndView.addObject("roleMenuList", roleMenuService.findAll(search));
         return modelAndView;
     }
 

@@ -47,7 +47,7 @@
                                 <c:forEach var="i" begin="1" end="${roleMenu.depth}" step="1">
                                     &nbsp;&nbsp;
                                 </c:forEach>
-                                    ${roleMenu.name}
+                                ${roleMenu.name}
                             </td>
                             <td>${roleMenu.depth}</td>
                             <td>${roleMenu.menuType}</td>

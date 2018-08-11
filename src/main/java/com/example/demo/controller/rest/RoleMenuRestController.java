@@ -15,10 +15,10 @@ public class RoleMenuRestController {
     @Autowired
     private RoleMenuService roleMenuService;
 
-    @RequestMapping("/findAll")
-    public List<RoleMenu> findAll() {
-        return roleMenuService.findAll();
-    }
+//    @RequestMapping("/findAll")
+//    public List<RoleMenu> findAll() {
+//        return roleMenuService.findAll();
+//    }
 
     @RequestMapping("/insert")
     public int insert() {
