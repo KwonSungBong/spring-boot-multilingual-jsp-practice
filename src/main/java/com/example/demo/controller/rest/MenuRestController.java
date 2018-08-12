@@ -3,10 +3,7 @@ package com.example.demo.controller.rest;
 import com.example.demo.service.MenuService;
 import com.example.demo.vo.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rest/menu")
@@ -20,15 +17,18 @@ public class MenuRestController {
         return menuService.getMenuRoot();
     }
 
-    @RequestMapping("/findAll")
-    public List<Menu> findAll() {
-        return menuService.findAll();
+    @PostMapping
+    public int insert(@RequestBody Menu menu) {
+        return 1;
     }
 
-    @RequestMapping("/insert")
-    public int insert() {
-        Menu menu = new Menu();
-        return menuService.insert(menu);
+    @PutMapping
+    public int update(@RequestBody Menu menu) {
+        return 1;
     }
 
+    @DeleteMapping
+    public int delete() {
+        return 1;
+    }
 }

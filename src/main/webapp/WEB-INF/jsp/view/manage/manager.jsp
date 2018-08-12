@@ -6,7 +6,6 @@
         <div class="card-header">
             <i class="fas fa-table"></i>
             Manager
-
             <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#userFormModal">
                 등록
             </button>

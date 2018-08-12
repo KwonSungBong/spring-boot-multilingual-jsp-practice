@@ -6,6 +6,9 @@
         <div class="card-header">
             <i class="fas fa-table"></i>
             Role
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#roleFormModal">
+                등록
+            </button>
         </div>
         <div class="card-body">
             <form class="form-inline">
@@ -30,7 +33,10 @@
                         <th>Name</th>
                         <th>Depth</th>
                         <th>menuType</th>
-                        <th>UseYn</th>
+                        <th>읽기</th>
+                        <th>추가</th>
+                        <th>수정</th>
+                        <th>삭제</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -38,7 +44,10 @@
                         <th>Name</th>
                         <th>Depth</th>
                         <th>menuType</th>
-                        <th>UseYn</th>
+                        <th>읽기</th>
+                        <th>추가</th>
+                        <th>수정</th>
+                        <th>삭제</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -52,14 +61,49 @@
                             </td>
                             <td>${roleMenu.depth}</td>
                             <td>${roleMenu.menuType}</td>
-                            <td>${roleMenu.useYn}</td>
+                            <td>
+                                <select class="form-control" value="${roleMenu.useYn}">
+                                    <option value="Y">Y</option>
+                                    <option value="N">N</option>
+                                </select>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
+                <button type="button" class="btn btn-primary btn-lg btn-block">저장</button>
             </div>
         </div>
         <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="roleFormModal" tabindex="-1" role="dialog" aria-labelledby="roleFormModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="roleFormModalTitle">등록</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Names</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary" id="saveButton">저장</button>
+            </div>
+        </div>
+    </div>
 </div>
