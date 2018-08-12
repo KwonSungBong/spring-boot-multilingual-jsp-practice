@@ -30,6 +30,7 @@ public class ManageController {
     public ModelAndView manager() {
         ModelAndView modelAndView = new ModelAndView("manage/manager");
         modelAndView.addObject("menuRoot", menuService.getMenuRoot());
+        modelAndView.addObject("roleList", roleService.findAll());
         modelAndView.addObject("userList", userService.findAll());
         return modelAndView;
     }
