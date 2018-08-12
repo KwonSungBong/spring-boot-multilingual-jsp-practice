@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container-fluid">
 
@@ -6,9 +7,8 @@
             <i class="fas fa-table"></i>
             Manager
 
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                Launch demo modal
+            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModalCenter">
+                등록
             </button>
         </div>
         <div class="card-body">
@@ -21,6 +21,7 @@
                         <th>UseYn</th>
                         <th>RoleName</th>
                         <th>RoleUseYn</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -30,6 +31,7 @@
                         <th>UseYn</th>
                         <th>RoleName</th>
                         <th>RoleUseYn</th>
+                        <th></th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -40,6 +42,11 @@
                             <td>${user.useYn}</td>
                             <td>${user.role.name}</td>
                             <td>${user.role.useYn}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                                    수정
+                                </button>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -62,7 +69,35 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <form>
+                    <div class="form-group">
+                        <label for="name">Names</label>
+                        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username">
+                        <small id="usernameHelp" class="form-text text-muted">We'll never share your username with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">Role</label>
+                        <select class="form-control" id="userRole">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="useYn">
+                        <label class="form-check-label" for="useYn">use yn</label>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
