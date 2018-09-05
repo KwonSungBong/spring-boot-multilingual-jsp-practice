@@ -71,7 +71,12 @@ https://memorynotfound.com/spring-boot-ehcache-2-caching-example-configuration/
 https://ckeditor.com/ckeditor-5/download/
 
 
+############################################################################################################
 
+
+no session last url. 
+
+URLEncoder.encode(url,"UTF-8")
 
 
 
